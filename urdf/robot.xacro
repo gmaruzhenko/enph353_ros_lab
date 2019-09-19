@@ -10,9 +10,6 @@
   <xacro:property name="wheel_width" value="0.03"/>
   <xacro:property name="camera_link" value="0.05" /> 
 
-
-
-  <!-- <xacro:include filename="$(find enph353_ros_lab)/urdf/robot.gazebo" /> -->
   <xacro:include filename="$(find enph353_ros_lab)/urdf/macros.xacro" />
 
   <xacro:macro name="default_inertial" params="mass">

@@ -66,7 +66,7 @@ It is also possible to use SDF to describe a model directly in the world file, h
 View the track model to see how a planar surface is defined in SDF. Note that this model has single link with *visual* and *collision* element, both are required to render the link. With URDF there is an additional requirement that each link has an *inertial* element. Both SDF and URDF do not require the visual and collision elements to match, this can be used to create objects that have complex visual appearance but simple collision geometery to reduce the computation required to detect collisions. Similary one can create visually large objects with infinitesimally small collision boxes if the purpose of the model is purely to provide a visual reference in the world.
 
 ```
-cat ~/enph353_ws/src/enph353_ROS_lab/models/track/track.sdf
+cat ~/enph353_ws/src/enph353_ros_lab/models/track/track.sdf
 ```
 
 Note that the plane visual element is defined with a "track" texture. You will need to add an image to the texture definition. Several track images are provided in the media/materials/textures directory. Locate the `track.material` file and replace the <image_name> tag with the file name of your desired texture.
