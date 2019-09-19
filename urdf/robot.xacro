@@ -51,6 +51,7 @@
   </link>
 
   <link name="right_front_wheel">
+    <xacro:default_inertial mass="0.1"/>    
     <visual>
       <origin rpy="1.57075 0 0" xyz="0 0 0"/>
       <geometry>
@@ -60,17 +61,18 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
 
-    <collision name='chassis_collision'>
+    <collision name='wheel_collision'>
       <geometry>
         <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
       </geometry>
     </collision>
   </link>
 
-  <joint name="right_front_wheel_joint" type="fixed">
+  <joint name="right_front_wheel_joint" type="continuous">
+    <axis xyz="0 1 0" />
     <parent link="chassis"/>
     <child link="right_front_wheel"/>
-    <origin rpy="0 0 0" xyz="0.133333333333 0 -0.085"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
 
   <!-- <link name="right_back_wheel">
