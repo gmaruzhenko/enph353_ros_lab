@@ -26,8 +26,8 @@ class image_converter:
     except CvBridgeError as e:
       print(e)
     
-    cv2.imshow("Image window", cv_image)
-    cv2.waitKey(0)
+    # cv2.imshow("Image window", cv_image)
+    # cv2.waitKey(0)
 
     process_image(cv_image)
 
@@ -92,7 +92,7 @@ def process_image(image):
 
         # run the slideshow at a min wait of 1 ms
         cv2.imshow("cropped", image)
-        cv2.waitKey(1)
+        cv2.waitKey(0)
 
         #reset image for next frame 
 
