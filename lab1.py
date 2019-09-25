@@ -7,6 +7,7 @@ import roslib
 import sys
 import rospy
 from std_msgs.msg import String
+from std_msgs.msg import Int16
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 
@@ -19,7 +20,7 @@ high_threshold = 80
 class image_converter:
 
     def __init__(self):
-        self.error_pub = rospy.Publisher("/rrbot/cv_stear_error", String, queue_size=10)
+        self.error_pub = rospy.Publisher("/rrbot/cv_stear_error", Int16, queue_size=10)
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber(
             "/rrbot/camera1/image_raw", Image, self.callback)
@@ -38,7 +39,7 @@ class image_converter:
         
 
         while not rospy.is_shutdown():
-            hello_str = "hello world %s" % rospy.get_time()
+            hello_str = 15
             rospy.loginfo(hello_str)
             self.error_pub.publish(hello_str)
             rate.sleep()

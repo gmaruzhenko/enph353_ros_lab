@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import String
+from std_msgs.msg import Int16
+
 
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    rospy.loginfo(rospy.get_caller_id() + "I heard %i", data.data)
     
 def listener():
 
@@ -14,7 +16,7 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
-    rospy.Subscriber("/rrbot/cv_stear_error", String, callback)
+    rospy.Subscriber("/rrbot/cv_stear_error", Int16, callback)
 
 
     # spin() simply keeps python from exiting until this node is stopped
