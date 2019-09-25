@@ -34,7 +34,7 @@ class image_converter:
         # cv2.imshow("Image window", cv_image)
         # cv2.waitKey(0)
 
-        process_image(cv_image)
+        #process_image(cv_image)
         
 
         while not rospy.is_shutdown():
