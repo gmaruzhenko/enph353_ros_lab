@@ -15,7 +15,8 @@ expected_error_max = 100
 
 Kernel_size = 15
 low_threshold = 30
-high_threshold = 60
+high_threshold = 40
+bwThresh = 100
 
 
 class image_converter:
@@ -72,9 +73,9 @@ def process_image(image):
     # Bigger high_threshold values will provoque to find less edges.
     # Canny recommended ratio upper:lower  between 2:1 or 3:1
     edged = cv2.Canny(crop_img, low_threshold, high_threshold)
-
-    cv2.imshow("edge", edged)
-    cv2.waitKey(0)
+    (thresh, im_bw) = cv2.threshold(crop_img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+    # cv2.imshow("cropped", im_bw)
+    # cv2.waitKey(0)
 
     # Note Black is 0 white is 1
     # Find first and second occurance of contour plot on second to
