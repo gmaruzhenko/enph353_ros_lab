@@ -43,7 +43,7 @@ class image_converter:
 
         while not rospy.is_shutdown():
             error = process_image(cv_image)
-            rospy.loginfo(error)
+            # rospy.loginfo(error)
             self.error_pub.publish(error)
             rate.sleep()
 
@@ -58,13 +58,13 @@ def process_image(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Blur image to reduce noise. if Kernel_size is bigger the image will be more blurry
-    blurred = cv2.GaussianBlur(gray, (Kernel_size, Kernel_size), 0)
+    # blurred = cv2.GaussianBlur(gray, (Kernel_size, Kernel_size), 0)
 
     # debug to find size of image
     # print blurred.shape
 
     # crop down to last few slices (actually not needed)
-    crop_img = blurred[600:800, 0:800]
+    crop_img = gray[600:800, 0:800]
 
     # cv2.imshow("cropped", crop_img)
     # cv2.waitKey(0)
@@ -101,11 +101,9 @@ def process_image(image):
         index += 1
 
     average_white = int((first_white+second_white)/2)
-    print average_white
 
     #average is left get negative error
     error = (average_white-index_max/2.)/index_max*expected_error_max
-    print error
     # print average_white
 
     # Now draw circle showing the center location of our contour line
