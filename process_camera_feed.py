@@ -30,8 +30,6 @@ class image_converter:
             "/rrbot/camera1/image_raw", Image, self.callback)
 
     def callback(self, data):
-        
-        rate = rospy.Rate(10)  # 10hz
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
@@ -46,7 +44,6 @@ class image_converter:
         error = process_image(cv_image)
         # rospy.loginfo(error)
         self.error_pub.publish(error)
-        rate.sleep()
 
         # try:
         #     self.error.publish(self.bridge.cv2_to_imgmsg(1))

@@ -9,8 +9,8 @@ from geometry_msgs.msg import Twist
 
 class Motor_Driver:
     def __init__(self):
-        self.gain = 0.05
-        self.basespeed = 0.2
+        self.gain = -0.30
+        self.basespeed = 0.1
 
         rospy.init_node('motor_driver', anonymous=True)
         rospy.Subscriber("/rrbot/cv_stear_error", Int16, self.callback)
