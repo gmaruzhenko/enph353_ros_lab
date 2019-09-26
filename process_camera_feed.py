@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+from __future__ import division
+
 import cv2
 import numpy as np
 import time
@@ -72,9 +74,10 @@ def process_image(image):
     # if a pixel gradient is lower than low_threshold is is rejected , it is not an edge.
     # Bigger high_threshold values will provoque to find less edges.
     # Canny recommended ratio upper:lower  between 2:1 or 3:1
-    edged = cv2.Canny(crop_img, low_threshold, high_threshold)
     (thresh, im_bw) = cv2.threshold(crop_img, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-    # cv2.imshow("cropped", im_bw)
+
+    edged = cv2.Canny(im_bw, low_threshold, high_threshold)
+    # cv2.imshow("cropped", edged)
     # cv2.waitKey(0)
 
     # Note Black is 0 white is 1
@@ -89,7 +92,7 @@ def process_image(image):
 
     while index < index_max:
 
-        if edged[39, index] > 0:
+        if edged[100, index] > 0:
             if first_white == 0:
                 first_white = index
             else:
@@ -98,18 +101,19 @@ def process_image(image):
         index += 1
 
     average_white = int((first_white+second_white)/2)
+    print average_white
 
     #average is left get negative error
-    error = (average_white-index_max/2)/index_max*expected_error_max
-
+    error = (average_white-index_max/2.)/index_max*expected_error_max
+    print error
     # print average_white
 
     # Now draw circle showing the center location of our contour line
-    cv2.circle(image, (average_white, 210), 20, (0, 0, 255), 1)
+    # cv2.circle(image, (average_white, 210), 20, (0, 0, 255), 1)
 
     # run the slideshow at a min wait of 1 ms
-    cv2.imshow("cropped", image)
-    cv2.waitKey(0)
+    # cv2.imshow("cropped", image)
+    # cv2.waitKey(0)
 
     # reset image for next frame
 
