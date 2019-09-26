@@ -14,8 +14,8 @@ from cv_bridge import CvBridge, CvBridgeError
 expected_error_max = 100
 
 Kernel_size = 15
-low_threshold = 40
-high_threshold = 80
+low_threshold = 30
+high_threshold = 60
 
 
 class image_converter:
@@ -73,8 +73,8 @@ def process_image(image):
     # Canny recommended ratio upper:lower  between 2:1 or 3:1
     edged = cv2.Canny(crop_img, low_threshold, high_threshold)
 
-    # cv2.imshow("cropped", edged)
-    # cv2.waitKey(0)
+    cv2.imshow("edge", edged)
+    cv2.waitKey(0)
 
     # Note Black is 0 white is 1
     # Find first and second occurance of contour plot on second to
@@ -104,11 +104,11 @@ def process_image(image):
     # print average_white
 
     # Now draw circle showing the center location of our contour line
-    # cv2.circle(image, (average_white, 210), 20, (0, 0, 255), 1)
+    cv2.circle(image, (average_white, 210), 20, (0, 0, 255), 1)
 
     # run the slideshow at a min wait of 1 ms
-    # cv2.imshow("cropped", image)
-    # cv2.waitKey(0)
+    cv2.imshow("cropped", image)
+    cv2.waitKey(0)
 
     # reset image for next frame
 
